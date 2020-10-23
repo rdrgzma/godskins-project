@@ -71,6 +71,16 @@
         <a  class="nav-link" href="{{route('site.cart-checkout')}}"  style="text-decoration: none"> cart</a>
       </li>
     </ul>
+                    @if(auth()->check())
+        <img src="{{ auth()->user()->avatar }}">
+        <h1>{{ auth()->user()->username }} <a href="{{ route('my.profile') }}">My Profile</a></h1>
+        <h4>{{ auth()->user()->steamid }}</h4>
+        <a href="{{ auth()->logout() }}">Log Out</a>
+
+        @else
+            <a href="{{ route('auth.steam') }}"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"></a>
+        @endif
+
   </div>
 </nav>
   </header>

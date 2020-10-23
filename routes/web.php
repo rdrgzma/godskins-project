@@ -24,7 +24,8 @@ Route::get('cart-checkout', 'CartController@cart')->name('site.cart-checkout');
 Route::post('cart-clear', 'CartController@clear')->name('cart.clear');
 Route::post('cart-removeitem', 'CartController@removeitem')->name('cart.removeitem');
 
-
+Route::get('auth/steam', 'AuthController@redirectToSteam')->name('auth.steam');
+Route::get('auth/steam/handle', 'AuthController@handle')->name('auth.steam.handle');
 
 Auth::routes();
 
