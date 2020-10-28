@@ -24,9 +24,16 @@ class CartController extends Controller
     public function cartstore(){
         Cart::store('username');
     }
-    public function cartpayment($SteamID){
+    public function paymentPicPay(){
+        dd(Cart::content());
 
     }
+    public function paymentTransfer(){
+
+        return view('site.payment');
+
+    }
+
 
     public function removeitem(Request $req)
     {

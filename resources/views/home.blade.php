@@ -25,7 +25,7 @@
         text-decoration-color: white;
 
       }
- 
+
       a{
         text-decoration: none;
       }
@@ -71,15 +71,7 @@
         <a  class="nav-link" href="{{route('site.cart-checkout')}}"  style="text-decoration: none"> cart</a>
       </li>
     </ul>
-                    @if(auth()->check())
-        <img src="{{ auth()->user()->avatar }}">
-        <h1>{{ auth()->user()->username }} <a href="{{ route('my.profile') }}">My Profile</a></h1>
-        <h4>{{ auth()->user()->steamid }}</h4>
-        <a href="{{ auth()->logout() }}">Log Out</a>
 
-        @else
-            <a href="{{ route('auth.steam') }}"><img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png"></a>
-        @endif
 
   </div>
 </nav>
@@ -89,9 +81,9 @@
       <main role="main" style="background-color:#272b30">
 
         <section class=" text-center text-dark">
-   
+
             <img src="http://via.placeholder.com/1500X400" width= "100%" class="img-fluid" alt="HERO">
- 
+
         </section>
 
 
@@ -111,13 +103,13 @@
                           <a href="{{ route('site.skin',$skin->id) }}" class="btn btn-sm btn-outline-secondary btn-success text-white-50"> Comprar</a>
                         <button type="button" class="btn btn-sm btn-outline-secondary">Inspesionar</button>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
               </div>
                @endforeach
-                           
+
 
       </main>
  <footer class="pt-4 my-md-5 pt-md-5 border-top" style="background-color:#272b30">
@@ -136,11 +128,11 @@
           <li><p class="text-muted" >Pic Pay</p></li>
         </ul>
       </div>
-      
+
     </div>
   </footer>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-           
+
       </html>

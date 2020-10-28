@@ -78,7 +78,7 @@
               </li>
               <li class="nav-item">
                 <a  class="nav-link" href="{{route('site.cart-checkout')}}"  style="text-decoration: none"> cart</a>
-                <span class="badge badge-secondary badge-pill"> 
+                <span class="badge badge-secondary badge-pill">
 
                 </span>
             </li>
@@ -90,20 +90,20 @@
 
 
   <div class="container">
-  
+
       @if (count(Cart::content()))
           <div class="row mb-15 p-5">
               <div class="col-md-12 order-md-12 text-center ">
                   <h4 class="mb-5">
                     <span class="text-muted">Seu Carrinho </span>
-                    
+
                   <span class="badge badge-secondary badge-pill">{{count(Cart::content())}}</span>
                   </h4>
-                    
+
                     <table class="table table-dark">
                       <thead>
                         <tr>
-                        
+
                           <th scope="col">Skin</th>
                           <th scope="col">Valor</th>
                           <th scope="col"></th>
@@ -112,54 +112,86 @@
                       <tbody>
                               @foreach (Cart::content() as $item)
                         <tr>
-                      
+
                           <td>{{$item->name}}</td>
                           <td>R${{$item->price}}</td>
-                          <td>                     
+                          <td>
                             <form action="{{route('cart.removeitem')}}" method="post">
                               <input type="hidden" name="rowId" value="{{"$item->rowId"}}">
                               @csrf
                               <button type="submit" class="btn btn-sm btn-outline-secondary  bg-dark text-white">Remover</button>
                             </form>
-                          </td>   
+                          </td>
                         </tr>
-                           @endforeach  
+                           @endforeach
                            <tr class="text-center">
                            <td><p> Total </p>
                            </td>
                            <td>
-                       <p> R${{Cart::priceTotal()}} </p></td>  
-                                                 <td>                     
-                            <form action="" method="">
-                              <input type="hidden" name="rowId" value="{{"$item->rowId"}}">
-                              @csrf
-                              <button type="submit" class="btn btn-sm btn-outline-secondary btn-success text-white">Pagar</button>
-                            </form>
-                          </td>                                           
-                        </tr>             
+                       <p> R${{Cart::priceTotal()}} </p></td>
+                                                 <td>
+
+
+                              <button type="submit" class="btn btn-sm btn-outline-secondary btn-success text-white" data-toggle="modal" data-target="#modalPayment">Pagar</button>
+
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
               </div>
               </div>
-        
-                @else 
+          <div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel text-dark">GodSkins</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                              <span aria-hidden="true">X</span>
+                          </button>
+                      </div>
+                      <div class="modal-body text-dark">
+                          Valor:<p> R$ {{Cart::priceTotal()}} </p>
+                          <div  class="d-flex flex-column align-items-center">
+                              Escolha a sua forma de pagamento:
+                              <h6>Transferencia Bancária</h6>
+                              <a href={{route('cart.paymentTransfer')}}>
+                                  <img src="{{asset('img/transfer.png')}}" alt="">
+                              </a>
+                              <h6>PicPay</h6>
+                              <a href={{route('cart.paymentPicPay')}}>
+                                  <img src="{{asset('img/picpay.png')}}" style="width:150px; height: auto" alt="">
+                              </a>
+                          </div>
+
+                      </div>
+                      <div class="modal-footer">
+                          <div class="btn-group">
+                              <a href="{{ route('site.cart-checkout') }}" style="text-decoration: none;" class=" btn btn-success xt-white"> Continuar Comprando</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+      @else
                 <div class="row mb-15 p-5">
               <div class="col-md-12 order-md-12 text-center ">
                   <h4 class="mb-5">
                     <span class="text-muted">O seu Carrinho está vazio! </span>
-                    
+
                   <span class="badge badge-secondary badge-pill">{{count(Cart::content())}} Skin</span>
                   </h4>
               </div>
-       
-        
+
+
       @endif
-      
+
   </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-      
+
 </body>
 </html>
 
