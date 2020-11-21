@@ -92,16 +92,16 @@
 
             <div class="row d-flex  justify-content-center text-white" style="background-color:#272b30">
               @foreach ($skins ?? '' as $skin)
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card mb-4 sd-4 shadow-sm text-white" style="background-color: #1c1e22;">
-                    <img src="{{ $skin->imagem }}"  width="100%" class="card-img-top p-5 img-fluid " alt="...">
-                  <div class="card-body  text-white" style="background-color: #1c1e22;">
-                    <h3 class="card-text text-white">{{$skin->nome }}</h3>
+              <div class="col-lg-4 col-md-6">
+                <div class="card shadow-sm text-white" style="background-color: #1c1e22;">
+                    <img src="{{url("storage/{$skin->imagem}")}}" alt="{{$skin->nome}}" class="card-img-top img-fluid" >
+                  <div class="card-body text-white" style="background-color: #1c1e22;">
+                    <h3 class="card-text text-white ">{{$skin->nome }}</h3>
                     <p class="card-text text-white">{{ $skin->valor}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                           <a href="{{ route('site.skin',$skin->id) }}" class="btn btn-sm btn-outline-secondary btn-success text-white-50"> Comprar</a>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Inspesionar</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Inspessionar</button>
                       </div>
 
                     </div>
@@ -134,5 +134,5 @@
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-
+  </body>
       </html>

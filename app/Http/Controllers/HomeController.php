@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Skin;
 
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -22,7 +22,11 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('home');
-    }
+       {
+           $skins= Skin::all();
+           return view('home', compact('skins'));
+       }
+       public function faq(){
+
+       }
 }

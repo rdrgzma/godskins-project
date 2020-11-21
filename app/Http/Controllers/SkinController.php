@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Skin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SkinController extends Controller
 {
@@ -15,7 +16,7 @@ class SkinController extends Controller
     public function index()
     {
        $skins= Skin::all();
-        return view('home', compact('skins'));
+       return view('site.skin-create',compact('skins'));
     }
 
     /**
@@ -25,7 +26,7 @@ class SkinController extends Controller
      */
     public function create()
     {
-        //
+        return view('site.skin-form');
     }
 
     /**
@@ -36,7 +37,17 @@ class SkinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $skin = new Skin();
+        $data = $request->only('nome','descricao','valor','raridade','image');
+        if ($request->hasFile('image') && $request->file('image')->isValid()){
+           $skin->imagem = $request->image->store('skins');
+        }
+        $skin->nome = $data['nome'];
+        $skin->descricao = $data['descricao'];
+        $skin->valor = $data['valor'];
+        $skin->raridade = $data['raridade'];
+        $skin->save();
+        return redirect()->route('skin.index');
     }
 
     /**
@@ -71,7 +82,7 @@ class SkinController extends Controller
      */
     public function update(Request $request, Skin $skin)
     {
-        //
+       //
     }
 
     /**
@@ -80,8 +91,14 @@ class SkinController extends Controller
      * @param  \App\Skin  $skin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skin $skin)
+    public function destroy(Request $request)
     {
-        //
+        $data = $request->only('id');
+       $skin = Skin::find($data['id']);
+       if(Storage::exists($skin->imagem)){
+           Storage::delete($skin->imagem);
+       }
+       $skin->delete();
+        return redirect()->route('skin.index');
     }
 }
